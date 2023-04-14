@@ -7,9 +7,16 @@ def append_list(file_name):
         result_list = [len_file, file_name, len_file, text_list]
         return result_list
 text_list = []
-text_list.append(append_list('1.txt'))
-text_list.append(append_list('2.txt'))
-text_list.append(append_list('3.txt'))
+current = os.getcwd()
+my_files = os.listdir(current)
+new_file = []
+for file in my_files:
+    if file[-4::1] == '.txt':
+        new_file.append(file)
+# все данные из файлов записываются в список в функции append_list, первым значением количество строк для каждого файла
+for file in new_file:
+    text_list.append(append_list(file))
+# список сортируется по количеству строк
 text_list.sort()
 for file_inf in text_list:
     with open('4.txt', 'a') as file:
